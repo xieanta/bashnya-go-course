@@ -65,10 +65,10 @@ func (t *Tree) Depth() int {
 	return max_depth
 }
 
-func (t *Tree) Insert(value int) {
+func (t *Tree) Insert(value int) bool {
 	if t.root == nil {
 		t.root = &Node{value: value}
-		return
+		return true
 	}
 
 	node := t.root
@@ -77,7 +77,7 @@ func (t *Tree) Insert(value int) {
 		if value < node.value {
 			if node.leftNode == nil {
 				node.leftNode = &Node{value: value}
-				return
+				return true
 			}
 			node = node.leftNode
 
@@ -85,24 +85,24 @@ func (t *Tree) Insert(value int) {
 
 			if node.rightNode == nil {
 				node.rightNode = &Node{value: value}
-				return
+				return true
 			}
 			node = node.rightNode
 
 		} else {
-			return
+			return false
 		}
 	}
 }
 
-func (t *Tree) Remove(value int) {
+func (t *Tree) Remove(value int) bool {
 	if t.root == nil {
-		return
+		return false
 	}
 
 	if t.root.value == value {
 		t.root = nil
-		return
+		return true
 	}
 	var parent *Node
 	var removedNode *Node
@@ -122,7 +122,7 @@ searchTree:
 		}
 	}
 	if node == nil {
-		return
+		return false
 	}
 	removedNode = node
 	switch {
@@ -162,9 +162,8 @@ searchTree:
 				parent.rightNode = child
 			}
 		}
-
 	}
-
+	return true
 }
 
 func (t *Tree) Print() {

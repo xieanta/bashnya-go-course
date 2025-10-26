@@ -13,11 +13,19 @@ import (
 func runTreeModification(t *tree.Tree, command string, number int) string {
 	switch command {
 	case "insert":
-		t.Insert(number)
-		return fmt.Sprintf("Элемент %d добавлен", number)
+		res := t.Insert(number)
+		if res {
+			return fmt.Sprintf("Элемент %d добавлен", number)
+		} else {
+			return fmt.Sprintf("Элемент %d уже существует", number)
+		}
 	case "remove":
-		t.Remove(number)
-		return fmt.Sprintf("Элемент %d удален", number)
+		res := t.Remove(number)
+		if res {
+			return fmt.Sprintf("Элемент %d удален", number)
+		} else {
+			return fmt.Sprintf("Элемент %d не найден", number)
+		}
 	default:
 		return "Неизвестная команда"
 	}
