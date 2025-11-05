@@ -77,3 +77,6 @@ Temporary Items
 .ionide
 
 # End of https://www.toptal.com/developers/gitignore/api/go,macos,visualstudiocode
+
+bashnya-hw4/uniq
+bashnya-hw4/acceptance-tests/user/
